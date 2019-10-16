@@ -122,7 +122,6 @@ errorRate <- sum(actualVsPredicted) - sum(diag(actualVsPredicted))
 # (Hint: the built-in R function scale() can be used for this)  (code) 
 
 colsToConsider <- 1:3
-k <- 11
 trainfeatures <- traindata[colsToConsider]
 trainlabels <- factor(traindata$forged)
 
@@ -144,6 +143,7 @@ testfeatures <- testfeatures[colsToConsider]
 
 # i. Train and test a k-nearest neighbor classifier with the normalized dataset. Consider only
 # variance, skewness, and curtosis columns. Set k=1. What is the error rate?
+k <- 1
 predictedlabels <- knn(train = trainfeatures, cl = trainlabels, test=testfeatures, k = k)
 
 actualVsPredicted <- table(testlabels, predictedlabels)
