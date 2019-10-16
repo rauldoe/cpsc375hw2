@@ -45,3 +45,40 @@ actualVsPredicted <- table(testlabels, predictedlabels)
 actualVsPredicted
 
 errorRate <- sum(actualVsPredicted) - sum(diag(actualVsPredicted))
+
+# d. Repeat part (c) but consider only variance , skewness, and curtosis columns. Set k=1. 
+# (show code.) What is the error rate? Will the error rate always decrease with larger 
+# number of parameters? Why or why not: answer in 2-3 sentences? 
+# ???
+predictedlabels <- knn(train = trainfeatures, cl = trainlabels, test=testfeatures, k = 1)
+
+actualVsPredicted <- table(testlabels, predictedlabels)
+actualVsPredicted
+errorRate <- sum(actualVsPredicted) - sum(diag(actualVsPredicted))
+
+# e. Repeat part (d) but set k=5. What is the error rate? 
+predictedlabels <- knn(train = trainfeatures, cl = trainlabels, test=testfeatures, k = 5)
+
+actualVsPredicted <- table(testlabels, predictedlabels)
+actualVsPredicted
+errorRate <- sum(actualVsPredicted) - sum(diag(actualVsPredicted))
+
+# d. Repeat part (c) but consider only variance , skewness, and curtosis columns. Set k=1. 
+# (show code.) What is the error rate? Will the error rate always decrease with larger 
+# number of parameters? Why or why not: answer in 2-3 sentences? 
+# TODO: TO BE FILLED
+  
+# f. Repeat part (e) but set k=11. What is the error rate? Considering your observations from
+# (d)-(f), which is the best value for k?
+predictedlabels <- knn(train = trainfeatures, cl = trainlabels, test=testfeatures, k = 11)
+
+actualVsPredicted <- table(testlabels, predictedlabels)
+actualVsPredicted
+errorRate <- sum(actualVsPredicted) - sum(diag(actualVsPredicted))
+
+# g. Consider only the ranges of the features - is normalization required? 
+# TODO: TO BE FILLED
+
+# h. Normalize each column by scaling the minimum-maximum range of each column to 0-1.
+# (Hint: the built-in R function scale() can be used for this)  (code) 
+
