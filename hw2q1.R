@@ -78,6 +78,7 @@ summary(mod2)
 # or coef(mod2)
 c2 <- mod2$coefficients
 
+g <- ggplot(data = data)
 psqrt <- g + geom_point(mapping = aes(x = sqrt_displacement, y = mpg))
 p2 <- psqrt + geom_abline(slope = c2[2], intercept = c2[1])
 
@@ -140,18 +141,24 @@ summary(mod5)
 # F-statistic:   187 on 5 and 392 DF,  p-value: < 2.2e-16
 
 # ii.  How many dummy (i.e., 0-1) variables were created in the model?
-# 5 variables: sqrt_displacement, cylinders4, cylinders5, cylinders6, cylinders8
+# 4 variables: cylinders4, cylinders5, cylinders6, cylinders8
 
 # iii. Is this a better fit than in part (e)?
-# yes, R-squared3 = 0.7046 > -squared2 = 0.673
+# yes, Adjusted R-squared3 = 0.7008 > Adjusted R-squared2 = 0.6729
 
 # iv.  Plot mpg vs. sqrt(displacement) and overlay the multiple linear fit lines: one for each value of the discrete variable. (code, plot)
 g5 <- ggplot(data = data)
 p5 <- g5 + geom_point(mapping = aes(x = sqrt_displacement, y = mpg, color=cylinders))
 
-p5 <- p5 + geom_abline(slope = c5[2], intercept = c5[1]) + geom_abline(slope = c5[2], intercept = c5[1] + c5[3]) + geom_abline(slope = c5[2], intercept = c5[1] + c5[4]) + geom_abline(slope = c5[2], intercept = c5[1] + c5[5]) + geom_abline(slope = c5[2], intercept = c5[1] + c5[6])
+p5 <- p5 + geom_abline(slope = c5[2], intercept = c5[1]) 
+p5 <- p5 + geom_abline(slope = c5[2], intercept = c5[1] + c5[3])
+p5 <- p5 + geom_abline(slope = c5[2], intercept = c5[1] + c5[4])
+p5 <- p5 + geom_abline(slope = c5[2], intercept = c5[1] + c5[5])
+p5 <- p5 + geom_abline(slope = c5[2], intercept = c5[1] + c5[6])
+p5 <- p5 + labs(x="sqrt(displacement)") 
 
 p5
+
 
 # v.   Plot mpg vs. displacement and overlay the best fit model as a curve. (code, plot) 
 # [Hint: plot the predictions; use add_predictions() and geom_line() and use the color aesthetic for cylinders]
@@ -159,6 +166,7 @@ mygrid5 <- data %>% add_predictions(mod5)
 g5 <- ggplot(data = data, mapping = aes(x = displacement))
 p5 <- g5 + geom_point(mapping = aes(y = mpg, color=cylinders))
 
-p5 <- p5 + geom_line(data = mygrid5, mapping = aes(x=displacement, y=pred))
+p5 <- p5 + geom_line(data = mygrid5, mapping = aes(x=displacement, y=pred, color=cylinders))
+p5 <- p5 + labs(x="sqrt(displacement)") 
 
 p5
